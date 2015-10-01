@@ -19,14 +19,14 @@ với các giá trị trong mảng ```$fillable``` là các ```column``` đượ
 4. Sau đó, ta sẽ có thể sử dụng các phương thức của **model/NestedSetModel.php** để thao tác với NSM table.
 
 ```php
-Node::addNode($nodeName, $parentName, $position);
+Node::addNode($nodeName, $parentID, $position);
 // Thêm 1 node mới
 //$position là vị trí trong parent mà node mới sẽ ở
 // Ví dụ: 1, 2, 3...
 
-Node::deleteNode($nodeName);
+Node::deleteNode($nodeID);
 // Xóa 1 node
 
-Node::moveNode($parentName, $nodeName, $position);
+Node::moveNode($parentID, $nodeID, $position);
 // Di chuyển 1 node cùng với child của nó
 ```
