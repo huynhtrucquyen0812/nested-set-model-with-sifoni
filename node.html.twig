@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nested Set Model</title>
+    <link rel="stylesheet" href="/styles/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/css/styles.css">
+    <script type="text/javascript" src="/styles/js/jquery.js"></script>
+    <script type="text/javascript" src="/styles/js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="navbar">
+	  <div class="navbar-inner">
+	    <div class="container">
+			{{ head | raw }}
+		</div>
+	  </div>
+	</div>
+
+	{% if error is defined %}
+		<div class="alert alert-error">
+		    {{ error }}
+		</div>
+	{% endif %}
+	<!--Form add-->
+	<form class="form-horizontal" method="post" action="/add" style="float: left;">
+	  <div class="control-group">
+	    <label class="control-label" for="inputParent">Parent</label>
+	    <div class="controls">
+	      	<select name="parent">
+	      		{{ select | raw }}
+	      	</select>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="inputValue">Name</label>
+	    <div class="controls">
+	      <input type="text" id="inputValue" placeholder="Node name" name="value" />
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="inputPosition">Position</label>
+	    <div class="controls">
+	      <input type="text" id="inputPosition" placeholder="Position" name="position" />
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <button type="submit" class="btn btn-success">Add Node</button>
+	    </div>
+	  </div>
+	</form>
+	<!--Form update-->
+	<form class="form-horizontal" method="post" action="/move" style="float: right;margin-right: 135px;">
+	  <div class="control-group">
+	    <label class="control-label" for="inputParent">Parent</label>
+	    <div class="controls">
+	    	<select name="parent">
+	      		{{ select | raw }}
+	      	</select>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="inputValue">Name</label>
+	    <div class="controls">
+	      	<select name="value">
+	      		{{ selectNoRoot | raw }}
+	      	</select>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="inputPosition">Position</label>
+	    <div class="controls">
+	      <input type="text" id="inputPosition" placeholder="Position" name="position" />
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <button type="submit" class="btn btn-success">Move Node</button>
+	    </div>
+	  </div>
+	</form>
+	<!--Form delete-->
+	<form class="form-horizontal" method="post" action="/delete" style="float: right;">
+	  <div class="control-group">
+	    <label class="control-label" for="inputValue">Name</label>
+	    <div class="controls">
+	      	<select name="value">
+	      		{{ selectNoRoot | raw }}
+	      	</select>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <button type="submit" class="btn btn-success">Delete Node</button>
+	    </div>
+	  </div>
+	</form>
+</body>
+</html>
