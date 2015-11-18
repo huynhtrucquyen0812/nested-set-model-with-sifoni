@@ -1,10 +1,10 @@
 ## Nested Set Model with Sifoni
 
-1. Khái niệm NSM: https://github.com/PhuongNamCorpsIntern/workspace/issues/4
+- Khái niệm NSM: https://github.com/PhuongNamCorpsIntern/workspace/issues/4
 
-2. Mình viết 1 cái model để kế thừa là **model/NestedSetModel.php**. Model này kế thừa **Base.php** và có thể được kế thừa bởi bất cứ Model nào có thể sử dụng theo kiểu NSM. Theo demo ở đây là **model/Node.php**
+- Mình viết 1 cái model để kế thừa là **model/NestedSetModel.php**. Model này kế thừa **Base.php** và có thể được kế thừa bởi bất cứ Model nào có thể sử dụng theo kiểu NSM. Theo demo ở đây là **model/Node.php**
 
-3. Chỉ cần khai báo cho **Node.php** như sau:
+- Chỉ cần khai báo cho **Node.php** như sau:
 
 ```php
 use App\Model\NestedSetModel;
@@ -16,7 +16,7 @@ class Node extends NestedSetModel{
 ```
 với các giá trị trong mảng ```$fillable``` là các ```column``` được sử dụng với ý nghĩa tương ứng.
 
-4. Sau đó, ta sẽ có thể sử dụng các phương thức của **model/NestedSetModel.php** để thao tác với NSM table.
+- Sau đó, ta sẽ có thể sử dụng các phương thức của **model/NestedSetModel.php** để thao tác với NSM table.
 
 ```php
 Node::addNode($nodeName, $parentID, $position);
@@ -31,7 +31,8 @@ Node::moveNode($parentID, $nodeID, $position);
 // Di chuyển 1 node cùng với child của nó
 ```
 
-5. Thêm function: (Update 18/11/2015)
+- Thêm function: (Update 18/11/2015)
+
 a. Insert, Update, Delete
 
 ```php
