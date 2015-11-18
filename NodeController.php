@@ -7,7 +7,7 @@ use App\Model\Node;
 use Sifoni\Model\DB;
 
 class NodeController extends Base {
-	public function indexAction(){
+	public function old_indexAction(){
 		$result='<ul>ROOT';
 		$not_parent = false;
 		for ($i=1; $i < Node::where('left', 0)->first()['right']; $i++) {
@@ -75,23 +75,37 @@ class NodeController extends Base {
 		return $this->render('node.html.twig', $data);
 	}
 
+	public function indexAction(){
+		$result=Node::getNodesAsTree();
+		$data['head']=$result;
+		$data['select']=$result;
+		return $this->render('node.html.twig', $data);
+	}
+
 	public function createAction(){
 		if ($postData = $this->getPostData()){
-			Node::addNode($postData['value'], $postData['parent'], $postData['position']);
+			// Node::addNode($postData['value'], $postData['parent'], $postData['position']);
+			$node=new Node();
+			$node->value=$postData['value'];
+			$node->insertNode($postData['parent'], $postData['position']);
 	    }
 		return $this->redirect('nodeIndex');
 	}
 
 	public function deleteAction(){
 		if ($postData = $this->getPostData()){
-			Node::deleteNode($postData['value']);
+			// Node::deleteNode($postData['value']);
+			$node=Node::find($postData['value']);
+			$node->removeNode();
 		}
 		return $this->redirect('nodeIndex');
 	}
 
 	public function moveAction(){
 		if ($postData = $this->getPostData()){
-			Node::moveNode($postData['parent'], $postData['value'], $postData['position']);
+			// Node::moveNode($postData['parent'], $postData['value'], $postData['position']);
+			$node=Node::find($postData['value']);
+			$node->updateNode($postData['parent'], $postData['position']);
 		}
 		return $this->redirect('nodeIndex');
 	}

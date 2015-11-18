@@ -1,0 +1,12 @@
+{% if parent.child is defined %}
+	{% for child in parent.child %}
+	    <li>
+	        {{ child.value }}
+	        {% if child.child is defined %}
+	            <ul>
+	                {% include "template.html.twig" with {'parent': child} %}
+	            </ul>
+	        {% endif %}
+	    </li>
+	{% endfor %}
+{% endif %}

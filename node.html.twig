@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="/styles/css/styles.css">
     <script type="text/javascript" src="/styles/js/jquery.js"></script>
     <script type="text/javascript" src="/styles/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/styles/js/bootstrap-treeview.min.js"></script>
 </head>
 <body>
     <div class="navbar">
 	  <div class="navbar-inner">
 	    <div class="container">
-			{{ head | raw }}
+	    	<ul>
+	    		{{ head.value }}
+				{% include "template.html.twig" with {'parent':head} only %}
+			</ul>
 		</div>
 	  </div>
 	</div>
@@ -28,7 +32,9 @@
 	    <label class="control-label" for="inputParent">Parent</label>
 	    <div class="controls">
 	      	<select name="parent">
-	      		{{ select | raw }}
+	      		<option value="{{ select.id }}">{{ select.value }}</option>
+	      		{% set space = '&nbsp; ' %}
+				{% include "select-temp.html.twig" with {'parent':select,'space':space} only %}
 	      	</select>
 	    </div>
 	  </div>
@@ -56,7 +62,9 @@
 	    <label class="control-label" for="inputParent">Parent</label>
 	    <div class="controls">
 	    	<select name="parent">
-	      		{{ select | raw }}
+	      		<option value="{{ select.id }}">{{ select.value }}</option>
+	      		{% set space = '&nbsp; ' %}
+				{% include "select-temp.html.twig" with {'parent':select,'space':space} only %}
 	      	</select>
 	    </div>
 	  </div>
@@ -64,7 +72,8 @@
 	    <label class="control-label" for="inputValue">Name</label>
 	    <div class="controls">
 	      	<select name="value">
-	      		{{ selectNoRoot | raw }}
+	      		{% set space = '&nbsp; ' %}
+				{% include "select-temp.html.twig" with {'parent':select,'space':space} only %}
 	      	</select>
 	    </div>
 	  </div>
@@ -86,7 +95,8 @@
 	    <label class="control-label" for="inputValue">Name</label>
 	    <div class="controls">
 	      	<select name="value">
-	      		{{ selectNoRoot | raw }}
+	      		{% set space = '&nbsp; ' %}
+				{% include "select-temp.html.twig" with {'parent':select,'space':space} only %}
 	      	</select>
 	    </div>
 	  </div>

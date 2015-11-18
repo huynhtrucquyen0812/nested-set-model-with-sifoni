@@ -1,0 +1,9 @@
+{% if parent.child is defined %}
+	{% for child in parent.child %}
+	    <option value="{{ child.id }}">{{ space|raw }}&diams; {{ child.value }}</option>
+        {% if child.child is defined %}
+        	{% set spaceC = space ~ '&nbsp; ' %}
+            {% include "select-temp.html.twig" with {'parent': child,'space':spaceC} %}
+        {% endif %}
+	{% endfor %}
+{% endif %}
